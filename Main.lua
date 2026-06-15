@@ -1,125 +1,106 @@
--- =============================================
--- Fake Robux GUI для Delta Executor
--- =============================================
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 -- Удаляем старое меню
-for _, gui in pairs(player.PlayerGui:GetChildren()) do
-    if gui.Name == "FakeRobuxGUI" then
-        gui:Destroy()
-    end
+for _, v in pairs(player:WaitForChild("PlayerGui"):GetChildren()) do
+    if v.Name == "FakeRobuxGUI" then v:Destroy() end
 end
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "FakeRobuxGUI"
 ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = player:WaitForChild("PlayerGui")
+ScreenGui.Parent = player.PlayerGui
 
 local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 380, 0, 300)
-Frame.Position = UDim2.new(0.5, -190, 0.25, 0)
-Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-Frame.BorderSizePixel = 0
+Frame.Size = UDim2.new(0, 420, 0, 380)
+Frame.Position = UDim2.new(0.5, -210, 0.2, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 Frame.Parent = ScreenGui
 
-Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 16)
+Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 18)
 
--- Заголовок
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 60)
 Title.BackgroundTransparency = 1
-Title.Text = "💰 Fake Robux"
-Title.TextColor3 = Color3.fromRGB(0, 255, 120)
+Title.Text = "💎 Roblox"
+Title.TextColor3 = Color3.fromRGB(0, 162, 255)
 Title.TextScaled = true
 Title.Font = Enum.Font.GothamBold
 Title.Parent = Frame
 
--- Никнейм
-local UserLabel = Instance.new("TextLabel")
-UserLabel.Size = UDim2.new(1, 0, 0, 30)
-UserLabel.Position = UDim2.new(0, 0, 0, 60)
-UserLabel.BackgroundTransparency = 1
-UserLabel.Text = "Аккаунт: " .. player.Name
-UserLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
-UserLabel.TextScaled = true
-UserLabel.Font = Enum.Font.Gotham
-UserLabel.Parent = Frame
+local Username = Instance.new("TextLabel")
+Username.Size = UDim2.new(1, 0, 0, 30)
+Username.Position = UDim2.new(0, 0, 0, 60)
+Username.BackgroundTransparency = 1
+Username.Text = "Аккаунт: " .. player.Name
+Username.TextColor3 = Color3.fromRGB(200, 200, 200)
+Username.TextScaled = true
+Username.Parent = Frame
 
--- Поле ввода
 local AmountBox = Instance.new("TextBox")
-AmountBox.Size = UDim2.new(0.85, 0, 0, 45)
+AmountBox.Size = UDim2.new(0.85, 0, 0, 50)
 AmountBox.Position = UDim2.new(0.075, 0, 0, 110)
 AmountBox.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-AmountBox.Text = "13457892"
-AmountBox.PlaceholderText = "Введите сумму Robux"
+AmountBox.Text = "15000000"
+AmountBox.PlaceholderText = "Введите количество Robux"
 AmountBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 AmountBox.TextScaled = true
 AmountBox.Font = Enum.Font.Gotham
 AmountBox.Parent = Frame
+Instance.new("UICorner", AmountBox).CornerRadius = UDim.new(0, 12)
 
-Instance.new("UICorner", AmountBox).CornerRadius = UDim.new(0, 10)
-
--- Кнопка Применить
-local ApplyBtn = Instance.new("TextButton")
-ApplyBtn.Size = UDim2.new(0.7, 0, 0, 50)
-ApplyBtn.Position = UDim2.new(0.15, 0, 0, 175)
-ApplyBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-ApplyBtn.Text = "✅ Применить"
-ApplyBtn.TextColor3 = Color3.new(1, 1, 1)
-ApplyBtn.TextScaled = true
-ApplyBtn.Font = Enum.Font.GothamBold
-ApplyBtn.Parent = Frame
-
-Instance.new("UICorner", ApplyBtn).CornerRadius = UDim.new(0, 12)
-
--- Отображение Robux
 local RobuxLabel = Instance.new("TextLabel")
-RobuxLabel.Size = UDim2.new(1, 0, 0, 50)
-RobuxLabel.Position = UDim2.new(0, 0, 0, 235)
+RobuxLabel.Size = UDim2.new(1, 0, 0, 70)
+RobuxLabel.Position = UDim2.new(0, 0, 0, 180)
 RobuxLabel.BackgroundTransparency = 1
-RobuxLabel.Text = "13,457,892"
+RobuxLabel.Text = "15,000,000"
 RobuxLabel.TextColor3 = Color3.fromRGB(0, 255, 120)
 RobuxLabel.TextScaled = true
 RobuxLabel.Font = Enum.Font.GothamBold
 RobuxLabel.Parent = Frame
 
--- Кнопка закрытия
-local CloseBtn = Instance.new("TextButton")
-CloseBtn.Size = UDim2.new(0, 40, 0, 40)
-CloseBtn.Position = UDim2.new(1, -45, 0, 10)
-CloseBtn.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
-CloseBtn.Text = "✕"
-CloseBtn.TextColor3 = Color3.new(1,1,1)
-CloseBtn.TextScaled = true
-CloseBtn.Font = Enum.Font.GothamBold
-CloseBtn.Parent = Frame
+local BuyBtn = Instance.new("TextButton")
+BuyBtn.Size = UDim2.new(0.75, 0, 0, 55)
+BuyBtn.Position = UDim2.new(0.125, 0, 0, 270)
+BuyBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+BuyBtn.Text = "🛒 Купить предмет"
+BuyBtn.TextColor3 = Color3.new(1,1,1)
+BuyBtn.TextScaled = true
+BuyBtn.Font = Enum.Font.GothamBold
+BuyBtn.Parent = Frame
+Instance.new("UICorner", BuyBtn).CornerRadius = UDim.new(0, 12)
 
-Instance.new("UICorner", CloseBtn).CornerRadius = UDim.new(1, 0)
-
--- Функция форматирования числа
+-- Функции
 local function formatNumber(num)
-    num = tostring(num):reverse():gsub("(%d%d%d)", "%1,"):reverse()
-    return num:gsub("^,", "")
+    return tostring(num):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
 end
 
--- Обновление
 local function updateRobux()
-    local text = AmountBox.Text:gsub("[^%d]", "")
-    if text == "" then text = "0" end
-    local number = tonumber(text) or 0
-    RobuxLabel.Text = formatNumber(number)
+    local num = tonumber(AmountBox.Text:gsub("[^%d]", "")) or 0
+    RobuxLabel.Text = formatNumber(num)
 end
 
-ApplyBtn.MouseButton1Click:Connect(updateRobux)
-CloseBtn.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
-end)
-
--- Автоматическое обновление при вводе
 AmountBox:GetPropertyChangedSignal("Text"):Connect(updateRobux)
 
-print("✅ Fake Robux GUI успешно загружен! (Delta)")
-task.wait(0.5)
-updateRobux() -- начальное форматирование
+BuyBtn.MouseButton1Click:Connect(function()
+    local fakePurchase = Instance.new("ScreenGui", player.PlayerGui)
+    local pf = Instance.new("Frame", fakePurchase)
+    pf.Size = UDim2.new(0, 320, 0, 200)
+    pf.Position = UDim2.new(0.5, -160, 0.35, 0)
+    pf.BackgroundColor3 = Color3.fromRGB(25,25,25)
+    Instance.new("UICorner", pf).CornerRadius = UDim.new(0,16)
+    
+    local txt = Instance.new("TextLabel", pf)
+    txt.Size = UDim2.new(1,0,1,0)
+    txt.BackgroundTransparency = 1
+    txt.Text = "Покупка товара...\n\n✅ Успешно куплено!\n(Фейковая покупка)"
+    txt.TextColor3 = Color3.fromRGB(0,255,100)
+    txt.TextScaled = true
+    txt.Font = Enum.Font.GothamBold
+    
+    task.wait(3)
+    fakePurchase:Destroy()
+end)
+
+updateRobux()
+print("✅ Fake Robux обновлён!")
